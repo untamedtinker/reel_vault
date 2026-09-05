@@ -1,0 +1,2 @@
+// 1x1 transparent PNG data URI for Chrome notifications
+export const NOTIFICATION_ICON_PNG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';

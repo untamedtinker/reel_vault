@@ -1,0 +1,455 @@
+/* ==========================================================================
+   EXTENSION ACTION POPUP STYLES
+   Scope: Extension Toolbar Popup (pages/popup.html)
+   Responsible Components:
+     - Header: Brand identity, logo icon box, extension version badge.
+     - Action Controls: Primary CTA (Open Dashboard), Secondary CTA (Sync Reels).
+     - Sync Complete Banner: Dynamic confirmation alert linking to dashboard.
+     - Live Sync Status Card: Real-time pulse indicator, state badge, and folder/reel count telemetry.
+     - Footer: Privacy declaration and offline status metadata.
+   ========================================================================== */
+
+/* Base box model reset for popup viewport */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Extension popup container canvas with fixed dimensions and ambient lighting */
+body {
+  width: 310px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #090a0f;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -20%, rgba(124, 58, 237, 0.22), transparent 70%),
+    radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.08), transparent 50%);
+  color: #f1f5f9;
+  padding: 18px 16px 14px;
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER COMPONENT
+   Responsible for: Top branding bar, glowing logo mark, title, and build version tag
+   -------------------------------------------------------------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(168, 85, 247, 0.25));
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c084fc;
+  box-shadow: 0 2px 10px rgba(124, 58, 237, 0.2);
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text h3 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 10px;
+  font-weight: 500;
+  color: #818cf8;
+  letter-spacing: 0.02em;
+}
+
+.version-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+}
+
+/* Informational description text under header */
+.desc {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   ACTION BUTTON CONTROLS
+   Responsible for: Launching the full dashboard tab and triggering background sync
+   -------------------------------------------------------------------------- */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+button {
+  width: 100%;
+  padding: 10.5px 14px;
+  border: none;
+  border-radius: 11px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.1px;
+  outline: none;
+}
+
+/* Primary Button: Vibrant gradient for Open Dashboard CTA */
+.btn-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #9333ea 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow:
+    0 4px 14px rgba(124, 58, 237, 0.32),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1.5px);
+  box-shadow:
+    0 6px 20px rgba(124, 58, 237, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  filter: brightness(1.05);
+}
+
+.btn-primary:hover .chevron-icon {
+  transform: translateX(2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+}
+
+.chevron-icon {
+  margin-left: auto;
+  opacity: 0.85;
+  transition: transform 0.18s ease;
+}
+
+/* Secondary Button: Subtle glass surface for background Sync trigger */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(168, 85, 247, 0.35);
+  color: #ffffff;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:hover .sync-icon {
+  transform: rotate(45deg);
+}
+
+.sync-icon {
+  transition: transform 0.3s ease;
+  color: #a78bfa;
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   SYNC COMPLETE BANNER COMPONENT
+   Responsible for: Slide-in notification banner displayed when background indexing finishes
+   -------------------------------------------------------------------------- */
+.sync-complete-banner {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: bannerSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bannerSlideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.complete-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.complete-text {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.complete-action-btn {
+  margin-top: 4px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   STATUS CARD COMPONENT
+   Responsible for: Pulse glow indicator, status badge (Ready/Syncing), and last sync summary
+   -------------------------------------------------------------------------- */
+.status-card {
+  margin-top: 14px;
+  padding: 11px 13px;
+  background: rgba(16, 19, 28, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.065);
+  border-radius: 11px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Glowing pulse indicator for real-time engine activity */
+.pulse-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  display: inline-block;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.65;
+  }
+}
+
+.status-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.status-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  letter-spacing: 0.01em;
+}
+
+.status-badge.ready {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.status-badge.syncing {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-badge.auth-required {
+  background: rgba(239, 68, 68, 0.14);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.last-sync-info {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.5;
+  display: block;
+  word-break: normal;
+}
+
+.last-sync-info svg {
+  flex-shrink: 0;
+  color: #6366f1;
+}
+
+.last-sync-info .status-action {
+  color: #94a3b8;
+  font-weight: 500;
+  display: inline;
+}
+
+.last-sync-info .status-folder {
+  display: inline-flex;
+  align-items: center;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 1px 7px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  font-weight: 600;
+  font-size: 10.5px;
+  margin: 0 2px;
+}
+
+.last-sync-info .status-count {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  font-weight: 700;
+  font-size: 10.5px;
+  margin: 0 2px;
+}
+
+.last-sync-info .status-creator {
+  display: inline-flex;
+  align-items: center;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 1px 7px;
+  border-radius: 4px;
+  background: rgba(168, 85, 247, 0.12);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  font-weight: 600;
+  font-size: 10.5px;
+  margin: 0 2px;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER COMPONENT
+   Responsible for: Local privacy notice and architectural baseline indicators
+   -------------------------------------------------------------------------- */
+.footer-links {
+  margin-top: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10px;
+  color: #64748b;
+  flex-wrap: wrap;
+}
+
+.footer-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.footer-author:hover {
+  color: #ffffff;
+}
+
+.footer-author .author-highlight {
+  color: #a78bfa;
+  font-weight: 600;
+}
+
+.footer-author:hover .author-highlight {
+  color: #c084fc;
+}
+
+.footer-privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #64748b;
+}
+
+.footer-dot {
+  color: #334155;
+}
+
+.footer-sub {
+  color: #475569;
+}

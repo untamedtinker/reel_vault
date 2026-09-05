@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Logs and runtime data
+*.log
+npm-debug.log*
+
+# Environment files and credentials
+.env
+.env.*
+*.pem
+*.key
+
+# Local vault archives and recording exports
+vault*.json
+*.mov
+*.mp4
+!demo/*.mp4
+*.webm
+
+# Local backups and scratch data
+local_files/
+scratch/
+*.bak
