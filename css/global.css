@@ -1,0 +1,248 @@
+/* ==========================================================================
+   GLOBAL DESIGN TOKENS & BASE STYLES
+   Scope: Universal / All Application Pages (index.html, pages/landing.html, pages/popup.html)
+   Description: Defines global CSS custom properties (color taxonomy, surface backgrounds,
+   radii, elevation shadows), reset rules, ambient canvas gradients, and reusable button primitives.
+   ========================================================================== */
+
+:root {
+  /* Surface backgrounds and elevation layers */
+  --bg-base: #0a0a0c;
+  --bg-surface: #131316;
+  --bg-surface-elevated: #16161a;
+  --bg-glass: rgba(10, 10, 12, 0.72);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(168, 85, 247, 0.35);
+
+  /* Typography color scale */
+  --text-main: #f2f1ee;
+  --text-muted: #9a9aa2;
+  --text-dim: #6b6b73;
+
+  /* Primary brand gradients and accent hues */
+  --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #9333ea 100%);
+  --accent-pink: #fb7185;
+  --accent-purple: #c084fc;
+  --accent-blue: #60a5fa;
+
+  /* Corner radius scale */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  /* Box shadow tokens */
+  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px rgba(124, 58, 237, 0.25);
+
+  /* Taxonomy Category Color Tokens (11 distinct high-contrast hues for creator/post tags) */
+  --c-tech: #3b82f6;
+  --c-food: #ef4444;
+  --c-arts: #d946ef;
+  --c-fitness: #84cc16;
+  --c-medicine: #06b6d4;
+  --c-business: #eab308;
+  --c-fashion: #f43f5e;
+  --c-mindset: #6366f1;
+  --c-travel: #f97316;
+  --c-entertainment: #9333ea;
+  --c-general: #64748b;
+  --c-neutral: #a1a1aa;
+}
+
+/* Base box model reset across all elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Global button focus and outline normalization */
+button {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+/* Base body canvas with dark ambient lighting radial gradients and smooth fade-in */
+body {
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(680px 420px at 14% -8%, rgba(124, 58, 237, 0.20), transparent 60%),
+    radial-gradient(620px 380px at 92% 6%, rgba(99, 102, 241, 0.10), transparent 60%);
+  -webkit-font-smoothing: antialiased;
+  animation: pageFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0.82; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* WebKit custom scrollbar styling for sleek dark presentation */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262c3b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* ==========================================================================
+   REUSABLE BUTTON PRIMITIVES
+   Scope: Universal button styles used across headers, modals, and toolbars
+   ========================================================================== */
+
+/* Base button structural layout */
+.btn {
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  outline: none;
+  white-space: nowrap;
+}
+
+/* Vibrant brand gradient button for primary call-to-actions */
+.btn-gradient {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+}
+
+.btn-gradient:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+}
+
+/* Subtle border surface button for secondary interactions */
+.btn-outline {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border-subtle);
+}
+
+.btn-outline:hover {
+  background: var(--bg-surface-elevated);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Green indicator state for connected local disk folder backup button */
+.btn-folder-connected {
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.35);
+  color: #34d399;
+}
+
+/* ==========================================================================
+   UNIVERSAL APPLICATION FOOTER COMPONENT
+   Scope: Main Application Views (index.html, pages/landing.html)
+   Responsible Elements:
+     - Container: Max-width centered layout with top divider border.
+     - Brand Info: Logo mark, app name, and copyright declaration.
+     - Architecture Badges: Privacy notice (100% Local Archive, Zero Cloud Tracking).
+   ========================================================================== */
+.app-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(10, 10, 12, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 0;
+  width: 100%;
+}
+
+.app-footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.app-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-footer-copy {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.app-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.app-footer-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.app-footer-author:hover {
+  color: #ffffff;
+}
+
+.app-footer-author .author-name {
+  color: #a78bfa;
+  font-weight: 600;
+}
+
+.app-footer-author:hover .author-name {
+  color: #c084fc;
+}
+
+.app-footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-subtle);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+

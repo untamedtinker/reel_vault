@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Reel Vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/popup.css" />
+</head>
+
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="brand-left">
+        <div class="brand-icon-box">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+            <path d="M12 2v20"></path>
+            <path d="M2 12h20"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h3>Reel Vault</h3>
+          <span class="brand-subtitle">Smart Local Archive</span>
+        </div>
+      </div>
+      <span class="version-badge">v2.1</span>
+    </div>
+
+    <!-- Description -->
+    <p class="desc">Instantly search, categorize, and explore your Instagram reels offline.</p>
+
+    <!-- Action Buttons -->
+    <div class="btn-group">
+      <button id="openVaultBtn" class="btn-primary">
+        <svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+          <path d="M3 9h18"></path>
+          <path d="M9 21V9"></path>
+        </svg>
+        <span>Open Reel Vault</span>
+        <svg class="chevron-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path>
+          <path d="M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
+
+      <button id="startBtn" class="btn-secondary">
+        <svg class="btn-icon sync-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6"></path>
+          <path d="M2.5 22v-6h6"></path>
+          <path d="M2 11.5a10 10 0 0 1 18.8-4.3"></path>
+          <path d="M22 12.5a10 10 0 0 1-18.8 4.2"></path>
+        </svg>
+        <span class="btn-label">Sync</span>
+        <svg class="chevron-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path>
+          <path d="M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Sync Complete Notification Banner (Shown when sync finishes) -->
+    <div id="syncCompleteBanner" class="sync-complete-banner" style="display: none;">
+      <div class="complete-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Sync Complete!</span>
+      </div>
+      <p class="complete-text">Your latest saves are updated.</p>
+      <button id="openDashboardFromBanner" class="btn-primary complete-action-btn">
+        <span>Go to Dashboard ↗</span>
+      </button>
+    </div>
+
+    <!-- Status Card -->
+    <div id="statusCard" class="status-card">
+      <div class="status-header">
+        <div class="status-left">
+          <span class="pulse-indicator"></span>
+          <span class="status-label">Status</span>
+        </div>
+        <span id="status" class="status-badge ready">Ready</span>
+      </div>
+      <div id="lastSyncInfo" class="last-sync-info">
+        Checking vault...
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-links">
+      <span class="footer-sub">© 2026 Reel Vault</span>
+      <span class="footer-dot">•</span>
+      <a href="https://github.com/untamedtinker" target="_blank" rel="noopener noreferrer" class="footer-author" title="View creator profile">
+        <span>Designed by</span>
+        <span class="author-highlight">untamedtinker</span>
+      </a>
+    </div>
+  </div>
+
+  <script src="../js/popup.js"></script>
+</body>
+
+</html>
